@@ -8,6 +8,8 @@ In particular we run our FLL competition teams using dedicated offline (old, don
 
 Fortunately the Spike app will work fine on Windows 7 if you copy it across.
 
+
+
 Installation on Windows 7 is a 3 step process:
 
 a) Install on a windows 10 machine and copy the installation folder across to the Windows 7 machine on a USB memory stick.
@@ -18,6 +20,8 @@ c) Install the Spike FS mode (usb serial communication) USB driver.
 
 
 The DFU mode driver is available as part of the normal LEGO installation. The FS mode driver is not so obvious, because it actually just uses the existing Windows operating system driver (usbser). So we just need to download/install an extra installation 'inf' file which basically just 'tells' Windows 7 to use the existing driver when Spike is connected. 
+
+
 
 
 In more detail (remember to login as an adminstrator and don't connect the Spike hub to the USB cable yet):
