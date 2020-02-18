@@ -1,8 +1,9 @@
 # spike-prime-win7
-LEGO spike prime app on windows 7
 
 Windows 7 is no longer supported, updated, etc. etc. so LEGO quite rightly don't want to support it, so their Spike Prime Windows 10 installer won't run on Windows 7.
+
 However in the real world lots of schools still use Windows 7 on old laptops etc..
+
 In particular we run our FLL competition teams using dedicated offline (old, donated) Windows 7 laptops.
 
 Fortunately the Spike app will work fine on Windows 7 if you copy it across.
@@ -10,7 +11,9 @@ Fortunately the Spike app will work fine on Windows 7 if you copy it across.
 Installation on Windows 7 is a 3 step process:
 
 a) Install on a windows 10 machine and copy the installation folder across to the Windows 7 machine on a USB memory stick.
+
 b) Install the Spike DFU mode (firmware upgrade) USB driver.
+
 c) Install the Spike FS mode (usb serial communication) USB driver. 
 
 
@@ -52,4 +55,4 @@ Double click on the shortcut and you should now have a working Spike system on y
 
 For information your Spike project files will be saved at 
 
-C:\Users\[username]\Documents\LEGO Education SPIKE
+C:\Users\ [username] \Documents\LEGO Education SPIKE
