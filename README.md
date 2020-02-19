@@ -9,7 +9,7 @@ In particular we run our FLL competition teams using dedicated offline (old, don
 Fortunately the Spike app will work fine on Windows 7 if you copy it across.
 
 
-
+	
 Installation on Windows 7 is a 3 step process:
 
 a) Install on a windows 10 machine and copy the installation folder across to the Windows 7 machine on a USB memory stick.
@@ -37,7 +37,7 @@ In more detail (remember to login as an adminstrator and don't connect the Spike
 
 5) Restart the computer. Yes, you really do have to do this.
 
-6) Connect the Spike to the USB cable and turn it on. Remember which USB port you have used on the computer, as it is best to always use the same one for the cable in the future. Ignore any Windows 'Installing device driver' messages and wait 5 minutes or so (driver update/install will eventually fail). During this time download the Spike FS driver and unzip it in a new folder on your desktop. 
+6) Connect the Spike to the USB cable and turn it on. Remember which USB port you have used on the computer, as it is best to always use the same one for the cable in the future. Ignore any Windows 'Installing device driver' messages and wait 5 minutes or so (driver update/install will eventually fail). During this time download the Spike driver from this repo and unzip it in a new folder on your desktop. 
 
 7) Open Device Manager (Start>Run>and type 'Device Manager' to find it)
 
@@ -54,7 +54,7 @@ In more detail (remember to login as an adminstrator and don't connect the Spike
 
 That's it!
 
-Double click on the shortcut and you should now have a working Spike system on your Windows 7 computer (USB cable connection). If you are brave you can now waste several hours trying to set up a working Bluetooth connection too, but we would suggest simply sticking to the USB cable.
+Double click on the shortcut and you should now have a working Spike system on your Windows 7 computer (USB cable connection). If you are brave you can now waste several hours trying to set up a working Bluetooth connection too (it's hard, but does work - see the instruction in the bluetooth folder in this repo), but we would suggest simply sticking to the USB cable.
 
 
 For information your Spike project files will be saved at 

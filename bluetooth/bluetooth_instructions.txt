@@ -1,0 +1,119 @@
+
+
+Getting bluetooth working on Windows 7 to the Spike hub with a bluetooth dongle is a challenge, sticking to USB is way simpler!
+However it has worked reliably for us. The instructions below assume you know how to use node.js
+
+Basically the process is:
+a) Install on windows 7 as per USB cable use
+b) Install the bluetooth dongle and setup a RFComm virtual COM port to the Spike hub using Windows bluetooth device settings.
+c) Decompress the Spike app source code so that it can be edited.
+d) Edit the 'serial-monitor.js' file to point it to your RFComm Virtual Com port.  
+e) Get spike running from the uncompressed files.
+
+Note here that the aim is to fool the Spike app into using the RFComm (bluetooth) virtual COM port, instead of the USB cable virtual COM port. 
+
+The bluetooth dongle we were using is about 10 years old, a Kensington EDR v2.1 device that we have used for years with the LEGO mindstorms EV3. I'm not sure why LEGO specify bluetooth 4, as anything v2.1 or greater should work.
+
+In more detail:
+
+1) Insert the bluetooth dongle and let it insert it's bluetooth drivers automatically.
+2) Restart the computer. Yes really do this.
+3) In the taskbar click the Bluetooth Devices icon
+4) Click 'Add a device'.
+5) Turn Spike hub on and press the bluetooth button
+6) Click on the LEGO hub device shown and let it install the drivers automatically. You shouldn't need the '0000' PIN, as bluetooth v2.1 (and greater) allows pinless connection.
+7) Open device manager. Look for two new entries in the Ports (COM & LPT) section called 'Standard Serial over Bluetooth'. The lower number COM port is the one to use ours was called COM8, so that is what is used in the example used below, yours may vary). You may also see a 'bluetooth peripheral device' setting, this can be ignored. We also checked we could communicate with the hub by using a free terminal application like realterminal.
+
+8) The Windows Spike app is compresseed, so we need to unpack it for editing. The files of interest are
+
+C:\Program Files\SPIKE\resources\app.asar
+and the folder 
+C:\Program Files\SPIKE\resources\app.asar.unpacked
+
+Copy these to a new folder on your desktop where you can work/edit on them.
+
+9) 
+
+Using the node.js command prompt
+
+npm install -g asar
+asar unpack app.asar app
+
+You will now have a new folder called app (with many sub folders) in your working folder.
+
+10) Find the file /app/app/static/serial-monitor.js
+ 
+Edit the filter section of thsi file to allow your COM port through, so change 
+
+    bindings
+      .filter(
+        port =>
+	  port.vendorId &&
+          (port.vendorId.toLowerCase() === 'f055' || port.vendorId.toLowerCase() === '0694')
+      )
+
+to include your COM port number e.g. COM8
+
+    bindings
+      .filter(
+        port =>
+ 	  port.comName === 'COM8' ||
+	  port.vendorId &&
+          (port.vendorId.toLowerCase() === 'f055' || port.vendorId.toLowerCase() === '0694')
+      )
+
+
+11) For some reason this doesn't always create a serial number, so the app was unreliable and kept asking for hub updates. So fake a serial number 1234 by editing this section:
+
+        const device = {
+          address: port.comName,
+          name: port.serialNumber,
+          serial: port.serialNumber,
+          rssi: 0,
+        };
+
+to
+
+        const device = {
+          address: port.comName,
+          name: port.serialNumber ? port.serialNumber : '1234',
+          serial: port.serialNumber ? port.serialNumber : '1234',
+          rssi: 0,
+        };
+
+12) save these changes in  /app/app/static/serial-monitor.js
+
+13) Copy the entire new app folder to
+
+    C:\Program Files\SPIKE\resources\
+
+14) Rename the original (no longer used) app.asar to something else like .original
+
+    C:\Program Files\SPIKE\resources\app.asar.original
+
+15) Run spike. It should still run, but is now using the uncompressed files instead of app.asar.
+
+16) Turn on the Spike Hub and hopefully it will connect (via bluetooth, but using the app's USB cable connection dialog!).
+
+Good luck! 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
