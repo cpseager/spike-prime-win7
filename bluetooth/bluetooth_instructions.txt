@@ -37,7 +37,7 @@ Copy these to a new folder on your desktop where you can work/edit on them.
 Using the node.js command prompt
 
 npm install -g asar
-asar unpack app.asar app
+asar extract app.asar app
 
 You will now have a new folder called app (with many sub folders) in your working folder.
 
