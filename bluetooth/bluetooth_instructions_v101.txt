@@ -1,4 +1,4 @@
-
+*** For Spike app v1.0.1 only ***
 
 Getting bluetooth working on Windows 7 to the Spike hub with a bluetooth dongle is a challenge, sticking to USB is way simpler!
 However it has worked reliably for us. The instructions below assume you know how to use node.js
@@ -24,7 +24,7 @@ In more detail:
 6) Click on the LEGO hub device shown and let it install the drivers automatically. You shouldn't need the '0000' PIN, as bluetooth v2.1 (and greater) allows pinless connection.
 7) Open device manager. Look for two new entries in the Ports (COM & LPT) section called 'Standard Serial over Bluetooth'. The lower number COM port is the one to use ours was called COM8, so that is what is used in the example used below, yours may vary). You may also see a 'bluetooth peripheral device' setting, this can be ignored. We also checked we could communicate with the hub by using a free terminal application like realterminal.
 
-8) The Windows Spike app is compresseed, so we need to unpack it for editing. The files of interest are
+8) The Windows Spike app is compressed, so we need to unpack it for editing. The files of interest are
 
 C:\Program Files\SPIKE\resources\app.asar
 and the folder 
@@ -43,7 +43,7 @@ You will now have a new folder called app (with many sub folders) in your workin
 
 10) Find the file /app/app/static/serial-monitor.js
  
-Edit the filter section of thsi file to allow your COM port through, so change 
+Edit the filter section of this file to also allow your COM port through, so change 
 
     bindings
       .filter(
@@ -63,7 +63,7 @@ to include your COM port number e.g. COM8
       )
 
 
-11) For some reason this doesn't always create a serial number, so the app was unreliable and kept asking for hub updates. So fake a serial number 1234 by editing this section:
+11) The RFCOmm port  doesn't always create a serial number, so the app was unreliable and kept asking for hub updates. So fake a serial number 1234 by editing this section:
 
         const device = {
           address: port.comName,
@@ -89,11 +89,12 @@ to
 
 14) Rename the original (no longer used) app.asar to something else like .original
 
-    C:\Program Files\SPIKE\resources\app.asar.original
+    C:\Program Files\SPIKE\resources\app.asar.v101
 
 15) Run spike. It should still run, but is now using the uncompressed files instead of app.asar.
 
 16) Turn on the Spike Hub and hopefully it will connect (via bluetooth, but using the app's USB cable connection dialog!).
+Note it will only connect when the Windows app is restarted, as the RFCOM port is not dynamically generated as a 'new port' at other times.
 
 Good luck! 
 
